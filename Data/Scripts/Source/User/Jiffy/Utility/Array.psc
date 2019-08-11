@@ -9,11 +9,12 @@ Var Function random(Var[] data) Global
 EndFunction
 
 Var[] Function copy(Var[] myArray) Global
-	if (!myArray)
-		return None
+	Var[] copy = new Var[0]
+
+	if (!myArray || !myArray.Length)
+		return copy
 	endif
 	
-	Var[] copy = new Var[0]
 	Int iCounter = 0
 	while (iCounter < myArray.Length)
 		copy.Add(myArray[iCounter])
@@ -24,55 +25,57 @@ Var[] Function copy(Var[] myArray) Global
 EndFunction
 
 Var[] Function union(Var[] existing, Var[] additional) Global
-	if (!existing || !additional || !additional.Length)
-		return existing
+	Var[] result = copy(existing)
+
+	if (!additional || !additional.Length)
+		return result
 	endif
-	
-	Var[] copy = copy(existing)
-	
+
 	Int iCounter = 0
 	Var additionalItem = None
 	while (iCounter < additional.Length)
 		additionalItem = additional[iCounter]
-		if (additionalitem && 0 > existing.Find(additionalItem))
-			copy.Add(additionalItem)
+		if (additionalitem && 0 > result.Find(additionalItem))
+			result.Add(additionalItem)
 		endif
 		
 		iCounter += 1
 	endWhile
 	
-	return copy
+	return result
 EndFunction
 
 Var[] Function subtract(Var[] existing, Var[] minus) Global
-	if (!existing || !minus || !minus.Length)
-		return existing
+	Var[] result = copy(existing)
+
+	if (!minus || !minus.Length)
+		return result
 	endif
 	
 	Int iCounter = 0
 	Var minusItem = None
 	Int minusLocation = -1
-	Var[] copy = copy(existing)
 	
 	while (iCounter < minus.Length)
 		minusItem = minus[iCounter]
-		minusLocation = existing.Find(minusItem)
+		minusLocation = result.Find(minusItem)
 		if (minusItem && 0 <= minusLocation)
-			copy.Remove(minusLocation)
+			result.Remove(minusLocation)
 		endif
 		
 		iCounter += 1
 	endWhile
 	
-	return copy
+	return result
 EndFunction
 
 Var[] Function intersection(Var[] arrayOne, Var[] arrayTwo) Global
+	Var[] results = new Var[0]
+
 	if (!arrayOne || !arrayOne.Length || !arrayTwo || !arrayTwo.Length)
-		return None
+		return results
 	endif
 	
-	Var[] results = new Var[0]
 	Var[] longer = arrayOne
 	Var[] shorter = arrayTwo
 	if (arrayOne.Length < arrayTwo.Length)
@@ -95,11 +98,12 @@ Var[] Function intersection(Var[] arrayOne, Var[] arrayTwo) Global
 EndFunction
 
 Var[] Function difference(Var[] arrayOne, Var[] arrayTwo) Global
+	Var[] results = new Var[0]
+
 	if (!arrayOne || !arrayOne.Length || !arrayTwo || !arrayTwo.Length)
-		return None
+		return results
 	endif
 	
-	Var[] results = new Var[0]
 	Var[] longer = arrayOne
 	Var[] shorter = arrayTwo
 	if (arrayOne.Length < arrayTwo.Length)

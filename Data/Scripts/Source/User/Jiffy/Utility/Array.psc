@@ -24,6 +24,25 @@ Var[] Function copy(Var[] myArray) Global
 	return copy
 EndFunction
 
+Var[] Function append(Var[] existing, Var[] additional) Global
+	Var[] result = copy(existing)
+	
+	if (!additional || !additional.Length)
+		return result
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < additional.Length)
+		if (additional[iCounter])
+			result.Add(additional[iCounter])
+		endif
+		
+		iCounter += 1
+	endWhile
+	
+	return result
+EndFunction
+
 Var[] Function union(Var[] existing, Var[] additional) Global
 	Var[] result = copy(existing)
 

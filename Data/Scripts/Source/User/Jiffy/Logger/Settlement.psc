@@ -7,15 +7,15 @@ String[] Function getTags() Global
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
 EndFunction
 
 Bool Function logopeningMenu(Jiffy:Settlement:Picker pickerRef) Global

@@ -34,6 +34,6 @@ Bool Function logCleaned(Jiffy:List list) Global
 	return log("List " + list + " has been cleaned")
 EndFunction
 
-Bool Function logUdpated(Jiffy:List:Updateable list) Global
+Bool Function logUpdated(Jiffy:List:Updateable list) Global
 	return log("List " + list + " has been updated")
 EndFunction

@@ -14,7 +14,7 @@ Form[] Function toArray(FormList theList) Global
 	
 	Int iCounter = 0
 	while (iCounter < iSize)
-		theArray.Add(theList.getAt(iSize))
+		theArray.Add(theList.getAt(iCounter))
 		iCounter += 1
 	endWhile
 	

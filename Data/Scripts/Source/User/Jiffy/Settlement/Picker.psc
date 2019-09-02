@@ -31,7 +31,8 @@ EndGroup
 
 Group MiscSettlementPickerSettings
 	Keyword Property SelectionKeyword = None Auto Const
-	{The keyword used to tell the game engine what sort of selection is being made.}
+	{The keyword used to tell the game engine what sort of selection is being made.  This can be left None and probably should be unless you have a specific reason for using a particular move type.
+	While this script couteracts the settlement assignment, the method used is a hack and results in a mess in the main Papyrus error log.}
 	Message Property ConfirmationMessage = None Auto Const
 	{The text shown to the player to confirm their selection.  A good opportunity to warn the player about what will happen if then choose to proceed.}
 	Message Property NoSelectionMessage = None Auto Const

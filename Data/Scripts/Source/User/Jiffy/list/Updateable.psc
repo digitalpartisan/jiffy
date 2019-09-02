@@ -1,4 +1,5 @@
 Scriptname Jiffy:List:Updateable extends Jiffy:List Hidden
+{In addition to implementing the functions described in the documentation on Jiffy:List, users of this script should consider implementing populateBehavior() as well since it is required to gauge whether or not an update has occurred.}
 
 CustomEvent Updated
 
@@ -13,6 +14,7 @@ Var[] Function setUpdateData(Var[] avUpdateData)
 EndFunction
 
 Function sendUpdated()
+	Jiffy:Logger:List.logUpdated(self)
 	SendCustomEvent("Updated")
 EndFunction
 

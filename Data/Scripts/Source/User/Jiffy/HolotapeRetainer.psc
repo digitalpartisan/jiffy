@@ -12,12 +12,15 @@ Holotape Property MyHolotape Auto Const Mandatory
 {Your plugin's holotape record}
 ReferenceAlias Property HolotapeAlias Auto Const Mandatory
 {The quest alias pointing to the instance of the holotape this script gives to the player.  See documentation on this script to populate this property.}
+Bool Property AddSilently = false Auto Const
+{If true, the holotape is silently added to the player's inventory.  This is not recommended unless you have a very specific use case where the user does not need to know they have received your holotape.}
 Bool Property RemoveOnShutdown = false Auto Const
 {Whether or not the holotape should be removed from the player's inventory when this retainer quest is stopped.}
 Bool Property RemoveSilently = false Auto Const
 {Only takes affect if RemoveOnShutdown is set to true.  If set to true, the player is not informed that the tape has left their inventory.}
 
 Function takeHolotape(Bool bSilent = false)
+	Jiffy:Logger:HolotapeRetainer.logTaking(self, MyHolotape, bSilent)
 	Game.GetPlayer().RemoveItem(MyHolotape, -1, bSilent)
 EndFunction
 
@@ -33,15 +36,18 @@ Function giveHolotape()
 	ObjectReference akInstance = aPlayer.PlaceAtMe(MyHolotape) ; we're not just adding the MyHolotape record to the player's inventory because we need a handle to the instance we want to retain
 	HolotapeAlias.ForceRefTo(akInstance) ; this step is the magic.  An alias designated a quest object turns whatever it points to into a quest item
 	
-	aPlayer.AddItem(akInstance, 1, bPlayerHad)
+	Jiffy:Logger:HolotapeRetainer.logGiving(self, MyHolotape, bPlayerHad, AddSilently)
+	aPlayer.AddItem(akInstance, 1, bPlayerHad || AddSilently)
 EndFunction
 
 Event OnQuestInit()
+	Jiffy:Logger:HolotapeRetainer.logStarting(self)
 	giveHolotape()
 EndEvent
 
 Event OnQuestShutdown()
 {This event runs in parallel with the Alias Script's OnAliasShutdown event, so tape removal is possible at this point.}
+	Jiffy:Logger:HolotapeRetainer.logStopping(self)
 	if (RemoveOnShutdown)
 		takeHolotape(RemoveSilently)
 	endif

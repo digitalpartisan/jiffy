@@ -1,4 +1,4 @@
-Scriptname Jiffy:List:Updateable extends Jiffy:List
+Scriptname Jiffy:List:Updateable extends Jiffy:List Hidden
 
 CustomEvent Updated
 
@@ -18,10 +18,6 @@ EndFunction
 
 Function clearUpdateData()
 	setUpdateData(None)
-EndFunction
-
-Bool Function equalityCheck(Var avItem1, Var avItem2)
-	return false
 EndFunction
 
 Bool Function hasDataChanged()

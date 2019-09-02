@@ -12,13 +12,13 @@ Function handle(ObjectReference akReference, Bool bPlaced = true)
 		return
 	endif
 	
-	ObjectReference linkRef = None
+	ObjectReference linkedRef = None
 	if (bPlaced)
-		linkRef = self
+		linkedRef = self
 	endif
 
-	Jiffy:Logger:Settlement.logWorkshopLink(self, workshopRef, MyKeyword, linkRef)
-	workshopRef.SetLinkedRef(linkRef, MyKeyword)
+	Jiffy:Logger:Settlement.logWorkshopLink(self, workshopRef, MyKeyword, linkedRef)
+	workshopRef.SetLinkedRef(linkedRef, MyKeyword)
 EndFunction
 
 Event OnWorkshopObjectPlaced(ObjectReference akReference)

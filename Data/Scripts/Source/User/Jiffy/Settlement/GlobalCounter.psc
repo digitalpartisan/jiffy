@@ -13,8 +13,8 @@ Function handle(Bool bPlaced = true)
 		fAdjust = -1.0 * Scale
 	endif
 	
-	Jiffy:Logger:Settlement.logGlobalAdjustment(self, MyGlobal, fAdjust)
 	MyGlobal.Mod(fAdjust)
+	Jiffy:Logger:Settlement.logGlobalAdjustment(self, MyGlobal, fAdjust)
 EndFunction
 
 Event OnWorkshopObjectDestroyed(ObjectReference akReference)
@@ -23,4 +23,12 @@ EndEvent
 
 Event OnWorkshopObjectPlaced(ObjectReference akReference)
 	handle()
+EndEvent
+
+Event OnWorkshopObjectMoved(ObjectReference akReference)
+	handle()
+EndEvent
+
+Event OnWorkshopObjectGrabbed(ObjectReference akReference)
+	handle(false)
 EndEvent

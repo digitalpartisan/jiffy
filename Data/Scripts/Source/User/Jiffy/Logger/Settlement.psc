@@ -26,12 +26,12 @@ Bool Function logLocationSettlementMatch(Jiffy:Settlement:Picker pickerRef, Loca
 	return log("Location picker " + pickerRef + " has matched location " + locationValue + " to workshop " + workshopRef)
 EndFunction
 
-Bool Function logWorkshopLink(Jiffy:Settlement:LinkRefToWorkshop linker, WorkshopScript workshopRef, Keyword linkKeyword, ObjectReference linkRef) Global
-	return log(linker + " is linking to workshop " + workshopRef + " " + linkKeyword + " " + linkRef)
+Bool Function logWorkshopLink(Jiffy:Settlement:LinkRefToWorkshop linker, WorkshopScript workshopRef, Keyword linkKeyword, ObjectReference linkedRef) Global
+	return log(linker + " is linking to workshop " + workshopRef + " " + linkKeyword + " to " + linkedRef)
 EndFunction
 
 Bool Function logGlobalAdjustment(Jiffy:Settlement:GlobalCounter counter, GlobalVariable variable, Float adjustment) Global
-	return log(counter + " is adjusting " + variable + " by " + adjustment)
+	return log(counter + " is adjusting " + variable + " by " + adjustment + " to " + variable.GetValue())
 EndFunction
 
 Bool Function logPickerResult(Jiffy:Settlement:Picker picker, Location result) Global

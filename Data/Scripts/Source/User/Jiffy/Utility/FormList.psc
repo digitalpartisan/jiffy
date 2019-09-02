@@ -33,3 +33,36 @@ Form Function random(FormList theList) Global
 	
 	return theList.GetAt(Utility.RandomInt(0, iSize - 1))
 EndFunction
+
+Function clean(FormList aflList, Bool bRecursive = true) Global
+	if (!aflList || !aflList.GetSize())
+		return
+	endif
+	
+	Int iCounter = 0
+	Int iSize = aflList.GetSize()
+	Form[] allForms = new Form[0]
+	Form current = None
+	while (iCounter < iSize)
+		current = aflList.GetAt(iCounter)
+		if (current)
+			if (current is FormList && bRecursive)
+				clean(current as FormList)
+			endif
+			
+			allForms.Add(current)
+			iCounter += 1
+		endif
+	endWhile
+	
+	aflList.Revert()
+	iCounter = 0
+	while (iCounter < allForms.Length)
+		current = allForms[iCounter]
+		if (!aflList.HasForm(current))
+			aflList.AddForm(current)
+		endif
+		
+		iCounter += 1
+	endWhile
+EndFunction

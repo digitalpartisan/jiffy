@@ -50,7 +50,7 @@ Function update()
 	setUpdateData(populateBehavior())
 	
 	if (hasDataChanged())
-		setData(getUpdateData())
+		setData(Jiffy:Utility:Array.copy(getUpdateData()))
 		sendUpdated()
 	endif
 	

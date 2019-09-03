@@ -1,7 +1,7 @@
 Scriptname Jiffy:List:Form extends Jiffy:List
 
 Bool Function equalityCheck(Var avItemOne, Var avItemTwo)
-	return (avItemOne as Form) == (avItemtwo as Form)
+	return (avItemOne as Form) == (avItemTwo as Form)
 EndFunction
 
 Form Function getForm(Int iIndex)

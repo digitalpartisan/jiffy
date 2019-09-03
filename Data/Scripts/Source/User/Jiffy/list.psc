@@ -60,12 +60,16 @@ Int Function getSize()
 	return data.Length
 EndFunction
 
+Bool Function rangeCheck(Int iIndex)
+	return (0 <= iIndex && iIndex < getSize())
+EndFunction
+
 Var Function get(Int iIndex)
-	if (!hasData() || iIndex < 0 || iIndex >= data.Length)
-		return None
+	if (rangeCheck(iIndex))
+		return data[iIndex]
 	endif
 	
-	return data[iIndex]
+	return None
 EndFunction
 
 Var[] Function getData()
@@ -125,7 +129,7 @@ Bool Function clean()
 		if (validate(data[iCounter]))
 			iCounter += 1
 		else
-			data.Remove(iCounter)
+			removeAt(iCounter)
 			bResult = true
 		endif
 	endWhile
@@ -142,34 +146,39 @@ Function clear()
 	sendCleared()
 EndFunction
 
-Function add(Var avItem)
+Bool Function add(Var avItem)
 	if (!validate(avItem) || has(avItem))
-		return
+		return false
 	endif
 	
 	dataPrep()
 	
 	data.Add(avItem)
 	sendAdded(avItem)
+	
+	return true
 EndFunction
 
-Function remove(Var avItem)
+Bool Function remove(Var avItem)
 	Int iIndex = find(avItem)
 	
 	if (0 <= iIndex)
-		data.Remove(iIndex)
-		sendRemoved(avItem)
-	endif
-EndFunction
-
-Function removeAt(Int iIndex)
-	Var item = get(iIndex)
-	if (!item)
-		return
+		return removeAt(iIndex)
 	endif
 	
+	return false
+EndFunction
+
+Bool Function removeAt(Int iIndex)
+	if (!rangeCheck(iIndex))
+		return false
+	endif
+	
+	Var item = get(iIndex)
 	getData().Remove(iIndex)
 	sendRemoved(item)
+	
+	return true
 EndFunction
 
 Var[] Function populateBehavior()

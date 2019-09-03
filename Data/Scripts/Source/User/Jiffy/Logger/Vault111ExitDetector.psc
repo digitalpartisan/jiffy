@@ -18,16 +18,16 @@ Bool Function error(String sMessage) Global
 	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
 EndFunction
 
-Bool Function logObserving(Jiffy:Vault111ExitDetector detector, Quest exitQuest) Global
-	return log(detector + " is observing " + exitQuest)
+Bool Function logObserving(Jiffy:Vault111ExitDetector detector) Global
+	return log(detector + " is observing " + detector.MQ102)
 EndFunction
 
-Bool Function logStopObserving(Jiffy:Vault111ExitDetector detector, Quest exitQuest) Global
-	return log(detector + " has stopped observing " + exitQuest)
+Bool Function logStopObserving(Jiffy:Vault111ExitDetector detector) Global
+	return log(detector + " has stopped observing " + detector.MQ102)
 EndFunction
 
-Bool Function logStartingQuest(Jiffy:Vault111ExitDetector detector, Quest targetQuest) Global
-	return log(detector + " is starting target quest " + targetQuest)
+Bool Function logStartingQuest(Jiffy:Vault111ExitDetector detector) Global
+	return log(detector + " is starting target quest " + detector.QuestToStart)
 EndFunction
 
 Bool Function logStageEvent(Jiffy:Vault111ExitDetector detector, Quest watchedQuest, Int stageID) Global

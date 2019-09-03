@@ -17,7 +17,6 @@ EndState
 State Adding
 	Event OnBeginState(String asOldState)
 		TheList.addTrueData(ToAdd)
-		TheList.update()
 		GoToState("Waiting")
 	EndEvent
 EndState

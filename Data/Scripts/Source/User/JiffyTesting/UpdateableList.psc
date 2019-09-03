@@ -8,6 +8,10 @@ Function addTrueData(Var avItem)
 	endif
 	
 	trueData.Add(avItem)
+	
+	Jiffy:Logger:List.log("The contents are now: " + trueData)
+	
+	update()
 EndFunction
 
 Var[] Function populateBehavior()

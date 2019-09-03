@@ -37,3 +37,19 @@ EndFunction
 Bool Function logUpdated(Jiffy:List:Updateable list) Global
 	return log("List " + list + " has been updated")
 EndFunction
+
+Bool Function logUpdateableNoData(Jiffy:List:Updateable list) Global
+	return log("List " + list + " had no data and still has no data")
+EndFunction
+
+Bool Function logUpdateableSomeData(Jiffy:List:Updateable list) Global
+	return log("List " + list + " either had no data and now does or had data and now does not")
+EndFunction
+
+Bool Function logUpdateableNoChange(Jiffy:List:Updateable list) Global
+	return log("List " + list + " detected no change in its data")
+EndFunction
+
+Bool Function logUpdateableSizeChange(Jiffy:List:Updateable list) Global
+	return log("List " + list + " detected a change in size of its data set")
+EndFunction

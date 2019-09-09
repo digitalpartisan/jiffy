@@ -116,6 +116,23 @@ Bool Function validate(Var avItem)
 	return avItem as Bool
 EndFunction
 
+Bool Function validateData()
+	if (!hasData())
+		true ; because there is nothing invalid about any of the data
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < getSize())
+		if (!validate(get(iCounter)))
+			return false
+		endif
+		
+		iCounter += 1
+	endWhile
+	
+	return true
+EndFunction
+
 Bool Function clean()
 	if (!data || !data.Length)
 		return false

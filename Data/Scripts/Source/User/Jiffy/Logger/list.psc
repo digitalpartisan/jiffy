@@ -53,3 +53,11 @@ EndFunction
 Bool Function logUpdateableSizeChange(Jiffy:List:Updateable list) Global
 	return log("List " + list + " detected a change in size of its data set")
 EndFunction
+
+Bool Function logDataValidation(Jiffy:List list) Global
+	return log("List " + list + " has validated its data")
+EndFunction
+
+Bool Function logFailedDataValidation(Jiffy:List list, Int iIndex, Var avItem) Global
+	return log("List " + list + " failed to validate its data at index " + iIndex + " with value " + avItem)
+EndFunction

@@ -43,6 +43,7 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 	Int iSize = aflList.GetSize()
 	Form[] allForms = new Form[0]
 	Form current = None
+	
 	while (iCounter < iSize)
 		current = aflList.GetAt(iCounter)
 		if (current)
@@ -51,11 +52,13 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 			endif
 			
 			allForms.Add(current)
-			iCounter += 1
 		endif
+		
+		iCounter += 1
 	endWhile
 	
 	aflList.Revert()
+	
 	iCounter = 0
 	while (iCounter < allForms.Length)
 		current = allForms[iCounter]

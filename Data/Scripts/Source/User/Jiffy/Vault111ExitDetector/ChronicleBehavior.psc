@@ -1,4 +1,4 @@
-Scriptname Jiffy:Vault111ExitDetector:ChronicleBehavior extends Chronicle:Package:custombehavior:CustomQuestType
+Scriptname Jiffy:Vault111ExitDetector:ChronicleBehavior extends Chronicle:Package:Custombehavior:CustomQuestType
 
 Jiffy:Vault111ExitDetector Property DetectorQuest Auto Const
 Bool Property StartOnInstall = true Auto Const

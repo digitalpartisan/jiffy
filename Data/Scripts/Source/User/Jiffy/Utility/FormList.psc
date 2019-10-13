@@ -34,6 +34,30 @@ Form Function random(FormList theList) Global
 	return theList.GetAt(Utility.RandomInt(0, iSize - 1))
 EndFunction
 
+Function addForms(FormList targetList, Form[] forms) Global
+	if (!targetList || !forms || !forms.Length)
+		return
+	endif
+	
+	Int iCounter = 0
+	while(iCounter < forms.Length)
+		targetList.AddForm(forms[iCounter])
+		iCounter += 1
+	endWhile
+EndFunction
+
+Function removeForms(FormList targetList, Form[] forms) Global
+	if (!targetList || !forms || !forms.Length)
+		return
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < forms.Length)
+		targetList.RemoveAddedForm(forms[iCounter])
+		iCounter += 1
+	endWhile
+EndFunction
+
 Function clean(FormList aflList, Bool bRecursive = true) Global
 	if (!aflList || !aflList.GetSize())
 		return

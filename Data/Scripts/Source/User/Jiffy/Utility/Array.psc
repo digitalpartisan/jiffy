@@ -42,3 +42,21 @@ Var[] Function append(Var[] existing, Var[] additional) Global
 	
 	return result
 EndFunction
+
+String Function toString(Var[] list) Global
+    String sResult = ""
+    if (!list || !list.Length)
+        return sResult
+    endif
+
+    Int iCounter = 0
+    while (iCounter < list.Length)
+        sResult += list[iCounter]
+        if ( (list.Length - 1) == iCounter )
+            sResult += " "
+        endif
+        iCounter += 1
+    endWhile
+
+    return sResult
+EndFunction

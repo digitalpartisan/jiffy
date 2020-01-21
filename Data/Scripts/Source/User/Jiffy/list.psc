@@ -210,3 +210,7 @@ EndFunction
 Function populate()
 	setData(populateBehavior())
 EndFunction
+
+String Function toString()
+    return self + " with data " + Jiffy:Utility:Array.toString(getData())
+EndFunction

@@ -71,10 +71,7 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 	while (iCounter < iSize)
 		current = aflList.GetAt(iCounter)
 		if (current)
-			if (current is FormList && bRecursive)
-				clean(current as FormList)
-			endif
-			
+			(current is FormList && bRecursive) && clean(current as FormList)
 			allForms.Add(current)
 		endif
 		
@@ -82,14 +79,14 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 	endWhile
 	
 	aflList.Revert()
+	if (aflList.GetSize() == allForms.Length)
+		return
+	endif
 	
 	iCounter = 0
 	while (iCounter < allForms.Length)
 		current = allForms[iCounter]
-		if (!aflList.HasForm(current))
-			aflList.AddForm(current)
-		endif
-		
+		!aflList.HasForm(current) && aflList.AddForm(current)
 		iCounter += 1
 	endWhile
 EndFunction

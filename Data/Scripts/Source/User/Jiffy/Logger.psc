@@ -15,3 +15,11 @@ EndFunction
 Bool Function error(String sMessage) Global
 	return Jiffy:Loggout.error(getName(), sMessage)
 EndFunction
+
+Bool Function cleaning(FormList aflList) Global
+	return log(aflList + " is being cleaned")
+EndFunction
+
+Bool Function doneCleaning(FormList aflList) Global
+	return log(aflList + " is done being cleaned")
+EndFunction

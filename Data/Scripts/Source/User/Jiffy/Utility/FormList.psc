@@ -63,6 +63,8 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 		return
 	endif
 	
+	Jiffy:Logger.cleaning(aflList)
+	
 	Int iCounter = 0
 	Int iSize = aflList.GetSize()
 	Form[] allForms = new Form[0]
@@ -79,14 +81,14 @@ Function clean(FormList aflList, Bool bRecursive = true) Global
 	endWhile
 	
 	aflList.Revert()
-	if (aflList.GetSize() == allForms.Length)
-		return
+	if (aflList.GetSize() != allForms.Length)
+		iCounter = 0
+		while (iCounter < allForms.Length)
+			current = allForms[iCounter]
+			!aflList.HasForm(current) && aflList.AddForm(current)
+			iCounter += 1
+		endWhile
 	endif
 	
-	iCounter = 0
-	while (iCounter < allForms.Length)
-		current = allForms[iCounter]
-		!aflList.HasForm(current) && aflList.AddForm(current)
-		iCounter += 1
-	endWhile
+	Jiffy:Logger.doneCleaning(aflList)
 EndFunction

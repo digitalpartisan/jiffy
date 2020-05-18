@@ -110,6 +110,7 @@ EndFunction
 
 Bool Function setData(Var[] newData)
 	data = newData
+	return true
 EndFunction
 
 Bool Function validate(Var avItem)

@@ -182,6 +182,22 @@ Bool Function add(Var avItem)
 	return true
 EndFunction
 
+Bool Function addBulk(Var[] avItems)
+	if (!avItems || !avItems.Length)
+		return true ; only return false if an actual failure occurred
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < avItems.Length)
+		if (!add(avItems[iCounter]))
+			return false
+		endif
+		iCounter += 1
+	endWhile
+	
+	return true
+EndFunction
+
 Bool Function remove(Var avItem)
 	Int iIndex = find(avItem)
 	
@@ -190,6 +206,22 @@ Bool Function remove(Var avItem)
 	endif
 	
 	return false
+EndFunction
+
+Bool Function removeBulk(Var[] avItems)
+	if (!avItems || !avItems.Length)
+		return true ; only return false if an actual failure occurred
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < avItems.Length)
+		if (!remove(avItems[iCounter]))
+			return false
+		endif
+		iCounter += 1
+	endWhile
+	
+	return true
 EndFunction
 
 Bool Function removeAt(Int iIndex)

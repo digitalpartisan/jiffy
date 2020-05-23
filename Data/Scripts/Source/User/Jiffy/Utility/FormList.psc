@@ -58,37 +58,69 @@ Function removeForms(FormList targetList, Form[] forms) Global
 	endWhile
 EndFunction
 
+Form[] Function getCleanForms(FormList targetList) Global
+	if (!targetList || !targetList.GetSize())
+		return None
+	endif
+	
+	Int iCounter = 0
+	Int iSize = targetList.GetSize()
+	Form[] forms = new Form[0]
+	Form current = None
+	while (iCounter < iSize)
+		current = targetList.GetAt(iCounter)
+		current && forms.Add(current)
+		iCounter += 1
+	endWhile
+	
+	return forms
+EndFunction
+
+FormList[] Function adjustFormListContents(FormList targetList, Form[] correctForms) Global
+	if (!targetList || !correctForms || correctForms.Length >= targetList.GetSize())
+		return None
+	endif
+	
+	Int iPreRevertSize = targetList.GetSize()
+	targetList.Revert()
+	if (iPreRevertSize == targetList.GetSize())
+		return None
+	endif
+	
+	FormList[] formLists = new FormList[0]
+	Int iCounter = 0
+	while (iCounter < correctForms.Length)
+		!targetList.HasForm(correctForms[iCounter]) && targetList.AddForm(correctForms[iCounter])
+		(correctForms[iCounter] is FormList) && formLists.Add(correctForms[iCounter] as FormList)
+		iCounter += 1
+	endWhile
+	
+	return formLists
+EndFunction
+
 Function clean(FormList aflList, Bool bRecursive = true) Global
 	if (!aflList || !aflList.GetSize())
+		Jiffy:Logger.log("FormList " + aflList + " does not need cleaning")
 		return
 	endif
 	
 	Jiffy:Logger.cleaning(aflList)
 	
-	Int iCounter = 0
-	Int iSize = aflList.GetSize()
-	Form[] allForms = new Form[0]
-	Form current = None
-	
-	while (iCounter < iSize)
-		current = aflList.GetAt(iCounter)
-		if (current)
-			(current is FormList && bRecursive) && clean(current as FormList)
-			allForms.Add(current)
-		endif
-		
-		iCounter += 1
-	endWhile
-	
-	aflList.Revert()
-	if (aflList.GetSize() != allForms.Length)
-		iCounter = 0
-		while (iCounter < allForms.Length)
-			current = allForms[iCounter]
-			!aflList.HasForm(current) && aflList.AddForm(current)
-			iCounter += 1
-		endWhile
-	endif
+	Form[] cleanForms = getCleanForms(aflList)
+	FormList[] children = adjustFormListContents(aflList, cleanForms)
+	bRecursive && cleanBulk(children)
 	
 	Jiffy:Logger.doneCleaning(aflList)
+EndFunction
+
+Function cleanBulk(FormList[] formLists, Bool bRecursive = true) Global
+	if (!formLists || !formLists.Length)
+		return
+	endif
+	
+	Int iCounter = 0
+	while (iCounter < formLists.Length)
+		clean(formLists[iCounter], bRecursive)
+		iCounter += 1
+	endWhile
 EndFunction

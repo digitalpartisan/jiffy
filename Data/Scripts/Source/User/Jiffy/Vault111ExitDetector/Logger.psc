@@ -1,4 +1,4 @@
-Scriptname Jiffy:Logger:Vault111ExitDetector Hidden Const DebugOnly
+Scriptname Jiffy:Vault111ExitDetector:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
 	String[] tags = new String[1]

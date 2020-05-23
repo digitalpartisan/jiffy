@@ -23,22 +23,22 @@ Var[] Function getEventArguments(Var avItem)
 EndFunction
 
 Function sendAdded(Var avItem)
-	;Jiffy:Logger:List.logAdded(self, avItem)
+	Jiffy:List:Logger.logAdded(self, avItem)
 	SendCustomEvent("Added", getEventArguments(avItem))
 EndFunction
 
 Function sendRemoved(Var avItem)
-	;Jiffy:Logger:List.logRemoved(self, avItem)
+	Jiffy:List:Logger.logRemoved(self, avItem)
 	SendCustomEvent("Removed", getEventArguments(avItem))
 EndFunction
 
 Function sendCleaned()
-	Jiffy:Logger:List.logCleaned(self)
+	Jiffy:List:Logger.logCleaned(self)
 	SendCustomEvent("Cleaned")
 EndFunction
 
 Function sendCleared()
-	Jiffy:Logger:List.logCleared(self)
+	Jiffy:List:Logger.logCleared(self)
 	SendCustomEvent("Cleared")
 EndFunction
 
@@ -119,7 +119,7 @@ EndFunction
 
 Bool Function validateData()
 	if (!hasData())
-		Jiffy:Logger:List.logDataValidation(self)
+		Jiffy:List:Logger.logDataValidation(self)
 		return true ; because there is nothing invalid about any of the data
 	endif
 	
@@ -128,14 +128,14 @@ Bool Function validateData()
 	while (iCounter < getSize())
 		currentItem = get(iCounter)
 		if (!validate(currentItem))
-			Jiffy:Logger:List.logFailedDataValidation(self, iCounter, currentItem)
+			Jiffy:List:Logger.logFailedDataValidation(self, iCounter, currentItem)
 			return false
 		endif
 		
 		iCounter += 1
 	endWhile
 	
-	Jiffy:Logger:List.logDataValidation(self)
+	Jiffy:List:Logger.logDataValidation(self)
 	return true
 EndFunction
 

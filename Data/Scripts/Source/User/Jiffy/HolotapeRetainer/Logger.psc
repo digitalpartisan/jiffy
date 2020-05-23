@@ -1,4 +1,4 @@
-Scriptname Jiffy:Logger:HolotapeRetainer Hidden Const DebugOnly
+Scriptname Jiffy:HolotapeRetainer:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
 	String[] tags = new String[1]

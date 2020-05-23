@@ -9,7 +9,7 @@ Function addTrueData(Var avItem)
 	
 	trueData.Add(avItem)
 	
-	Jiffy:Logger:List.log("The contents are now: " + trueData)
+	Jiffy:List:Logger.log("The contents are now: " + trueData)
 	
 	update()
 EndFunction

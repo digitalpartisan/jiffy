@@ -20,7 +20,7 @@ Bool Property RemoveSilently = false Auto Const
 {Only takes affect if RemoveOnShutdown is set to true.  If set to true, the player is not informed that the tape has left their inventory.}
 
 Function takeHolotape(Bool bSilent = false)
-	Jiffy:Logger:HolotapeRetainer.logTaking(self, MyHolotape, bSilent)
+	Jiffy:HolotapeRetainer:Logger.logTaking(self, MyHolotape, bSilent)
 	Game.GetPlayer().RemoveItem(MyHolotape, -1, bSilent)
 EndFunction
 
@@ -36,18 +36,18 @@ Function giveHolotape()
 	ObjectReference akInstance = aPlayer.PlaceAtMe(MyHolotape) ; we're not just adding the MyHolotape record to the player's inventory because we need a handle to the instance we want to retain
 	HolotapeAlias.ForceRefTo(akInstance) ; this step is the magic.  An alias designated a quest object turns whatever it points to into a quest item
 	
-	Jiffy:Logger:HolotapeRetainer.logGiving(self, MyHolotape, bPlayerHad, AddSilently)
+	Jiffy:HolotapeRetainer:Logger.logGiving(self, MyHolotape, bPlayerHad, AddSilently)
 	aPlayer.AddItem(akInstance, 1, bPlayerHad || AddSilently)
 EndFunction
 
 Event OnQuestInit()
-	Jiffy:Logger:HolotapeRetainer.logStarting(self)
+	Jiffy:HolotapeRetainer:Logger.logStarting(self)
 	giveHolotape()
 EndEvent
 
 Event OnQuestShutdown()
 {This event runs in parallel with the Alias Script's OnAliasShutdown event, so tape removal is possible at this point.}
-	Jiffy:Logger:HolotapeRetainer.logStopping(self)
+	Jiffy:HolotapeRetainer:Logger.logStopping(self)
 	if (RemoveOnShutdown)
 		takeHolotape(RemoveSilently)
 	endif

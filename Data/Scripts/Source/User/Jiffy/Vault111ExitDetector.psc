@@ -17,17 +17,17 @@ Quest Property QuestToStart Auto Const Mandatory
 {Your plugin's quest.}
 
 Function startWatching()
-	Jiffy:Logger:Vault111ExitDetector.logObserving(self)
+	Jiffy:Vault111ExitDetector:Logger.logObserving(self)
 	RegisterForRemoteEvent(MQ102, "OnStageSet")
 EndFunction
 
 Function stopWatching()
-	Jiffy:Logger:Vault111ExitDetector.logStopObserving(self)
+	Jiffy:Vault111ExitDetector:Logger.logStopObserving(self)
 	UnregisterForRemoteEvent(MQ102, "OnStageSet")
 EndFunction
 
 Function startTargetQuest()
-	Jiffy:Logger:Vault111ExitDetector.logStartingQuest(self)
+	Jiffy:Vault111ExitDetector:Logger.logStartingQuest(self)
 	QuestToStart.Start()
 	Stop() ; done here.  Once the target quest has started, leaving the exit detector running would just waste resources
 EndFunction
@@ -47,7 +47,7 @@ EndEvent
 
 Event Quest.OnStageSet(Quest akSender, Int auiStageID, Int auiItemID)
 {If "Out of Time" indicates to the game engine that the player has left Vault 111 for the first time, this script's job is done.  Stop listening and start the quest.}
-	Jiffy:Logger:Vault111ExitDetector.logStageEvent(self, akSender, auiStageID)
+	Jiffy:Vault111ExitDetector:Logger.logStageEvent(self, akSender, auiStageID)
 	if (MQ102 == akSender && MQ102StageToWatch == auiStageID)
 		stopWatching()
 		startTargetQuest()

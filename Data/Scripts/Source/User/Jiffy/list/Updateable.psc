@@ -14,7 +14,7 @@ Var[] Function setUpdateData(Var[] avUpdateData)
 EndFunction
 
 Function sendUpdated()
-	Jiffy:Logger:List.logUpdated(self)
+	Jiffy:List:Logger.logUpdated(self)
 	SendCustomEvent("Updated")
 EndFunction
 

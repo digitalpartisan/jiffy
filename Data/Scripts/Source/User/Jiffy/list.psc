@@ -7,7 +7,7 @@ For the same reason, there is no observation of OnQuestInit() and OnQuestShutdow
 
 This script cannot serve as a list on its own since the Papyrus engine cannot compare the Var type and the ability to determine whether or not a particular item is already in the list depends on childred of this script type.
 At the very least, a child script must implement the equalityCheck() method in order to be viable for use.
-It is also avisable to implement getters, setters, and anything that might need to take input or give output using the type of data your list will contain to avoid needing to do that conversion everywhere your list might be used.}
+It is also advisable to implement getters, setters, and anything that might need to take input or give output using the type of data your list will contain to avoid needing to do that conversion everywhere your list might be used.}
 
 CustomEvent Added
 CustomEvent Removed

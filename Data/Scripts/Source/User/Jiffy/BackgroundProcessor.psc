@@ -1,4 +1,5 @@
 Scriptname Jiffy:BackgroundProcessor extends Quest
+{This quest must be running before process() is called.}
 
 Jiffy:List:Queue Property MyQueue Auto Const Mandatory
 
@@ -65,12 +66,6 @@ Auto State Dormant
 	Event OnQuestInit()
 		goToWaiting()
 	EndEvent
-
-	Function process(Var item)
-		Start()
-		queueItem(item)
-		goToWorking()
-	EndFunction
 EndState
 
 State Waiting

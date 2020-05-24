@@ -1,21 +1,21 @@
 Scriptname Jiffy:Vault111ExitDetector:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
-	String[] tags = new String[1]
-	tags[0] = "Vault 111 Exit Detector"
+	String[] tags = new String[0]
+	tags.Add("Vault 111 Exit Detector")
 	return tags
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Jiffy:Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.log(sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Jiffy:Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.warn(sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.error(sMessage, getTags())
 EndFunction
 
 Bool Function logObserving(Jiffy:Vault111ExitDetector detector) Global

@@ -1,21 +1,21 @@
 Scriptname Jiffy:BackgroundProcessor:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
-	String[] tags = new String[1]
-	tags[0] = "Background Processor"
+	String[] tags = new String[0]
+	tags.Add("Background Processor")
 	return tags
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Jiffy:Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.log(sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Jiffy:Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.warn(sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.error(sMessage, getTags())
 EndFunction
 
 Bool Function logReceivedItem(Jiffy:BackgroundProcessor processor, Var item) Global

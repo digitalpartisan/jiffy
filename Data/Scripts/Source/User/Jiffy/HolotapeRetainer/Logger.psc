@@ -1,21 +1,21 @@
 Scriptname Jiffy:HolotapeRetainer:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
-	String[] tags = new String[1]
-	tags[0] = "Holotape Retainer"
+	String[] tags = new String[0]
+	tags.Add("Holotape Retainer")
 	return tags
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Jiffy:Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.log(sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Jiffy:Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.warn(sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.error(sMessage, getTags())
 EndFunction
 
 Bool Function logGiving(Jiffy:HolotapeRetainer retainer, Holotape holotapeRecord, Bool bPlayerHad, Bool bForceSilent) Global

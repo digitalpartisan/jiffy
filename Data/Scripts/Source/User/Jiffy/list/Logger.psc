@@ -1,21 +1,21 @@
-Scriptname Jiffy:list:Logger Hidden Const DebugOnly
+Scriptname Jiffy:List:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
-	String[] tags = new String[1]
-	tags[0] = "List"
+	String[] tags = new String[0]
+	tags.Add("List")
 	return tags
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Jiffy:Loggout.log(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.log(sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Jiffy:Loggout.warn(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.warn(sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Jiffy:Loggout.error(Jiffy:Logger.getName(), sMessage, getTags())
+	return Jiffy:Logger.error(sMessage, getTags())
 EndFunction
 
 Bool Function logAdded(Jiffy:List list, Var item) Global

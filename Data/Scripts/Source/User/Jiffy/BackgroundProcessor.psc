@@ -1,5 +1,5 @@
 Scriptname Jiffy:BackgroundProcessor extends Quest
-{This quest must be running before process() is called.}
+{This quest should be running before process() is called, though steps have been taken to hedge against the failure case where this expectation is not met.}
 
 Jiffy:List:Queue Property MyQueue Auto Const Mandatory
 

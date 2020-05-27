@@ -18,6 +18,8 @@ ListData Function prepData(FormList list, Bool recursive = true) Global
 EndFunction
 
 Bool Function equalityCheck(Var avItemOne, Var avItemTwo)
+	;Jiffy:Logger.log("comparing " + avItemOne + " with " + avItemTwo)
+
 	ListData dataOne = avItemOne as ListData
 	ListData dataTwo = avItemTwo as ListData
 	

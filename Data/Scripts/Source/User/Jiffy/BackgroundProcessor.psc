@@ -46,7 +46,9 @@ EndFunction
 
 Function queueItem(Var item)
 	Jiffy:BackgroundProcessor:Logger.logReceivedItem(self, item)
-	getQueue().add(item)
+	if (!getQueue().add(item))
+		;Jiffy:Logger.log(self + " rejected item " + item)
+	endif
 EndFunction
 
 Event OnQuestShutdown()
@@ -70,7 +72,11 @@ EndState
 
 State Waiting
 	Event OnBeginState(String asOldState)
-		getQueue().peek() && goToWorking()
+		if (getQueue().peek())
+			goToWorking()
+		else
+			Jiffy:Logger.log(self + " has no items in the queue")
+		endif
 	EndEvent
 
 	Function process(Var item)

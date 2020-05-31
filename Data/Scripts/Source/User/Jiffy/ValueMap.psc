@@ -1,4 +1,5 @@
 Scriptname Jiffy:ValueMap extends Quest
+{Creates an association between a String and a ScriptObject, allowing that String to be used to retrieve said ScriptObject as needed.}
 
 CustomEvent Added
 CustomEvent Removed
@@ -14,8 +15,20 @@ String sStateStarted = "Started" Const
 
 TokenValue[] data = None
 
+Bool Function compareState(String sValue)
+	return GetState() == sValue
+EndFunction
+
+Bool Function isWaiting()
+	return compareState(sStateWaiting)
+EndFunction
+
 Function goToWaiting()
 	GoToState(sStateWaiting)
+EndFunction
+
+Bool Function isStarted()
+	return compareState(sStateStarted)
 EndFunction
 
 Function goToStarted()
@@ -23,10 +36,12 @@ Function goToStarted()
 EndFunction
 
 Bool Function validate(TokenValue tvMapping) Global
+{Returns true if the specified TokenValue exists and has non-empty attributes.  False otherwise.}
 	return (tvMapping && tvMapping.token && "" != tvMapping.token && tvMapping.value)
 EndFunction
 
 Bool Function compare(TokenValue tvOne, TokenValue tvTwo) Global
+{Returns true if tvOne and tvTwo are both valid and have matching tokens and values.  False otherwise.}
 	if (!validate(tvOne) || !validate(tvTwo))
 		return false
 	endif
@@ -35,6 +50,7 @@ Bool Function compare(TokenValue tvOne, TokenValue tvTwo) Global
 EndFunction
 
 TokenValue Function create(String asToken, ScriptObject asoValue) Global
+{Returns a TokenValue struct with the values of asToken ans asoValue}
 	TokenValue result = new TokenValue
 	result.token = asToken
 	result.value = asoValue

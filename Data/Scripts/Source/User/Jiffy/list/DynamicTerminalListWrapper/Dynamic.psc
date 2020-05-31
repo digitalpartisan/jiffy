@@ -1,4 +1,5 @@
-Scriptname Jiffy:list:DynamicTerminalListWrapper:Dynamic extends Jiffy:list:DynamicTerminalListWrapper
+Scriptname Jiffy:list:DynamicTerminalListWrapper:Dynamic extends Jiffy:List:DynamicTerminalListWrapper
+{Enables pagination over a Jiffy:List which can be set at will.  See Jiffy:List:DynamicTerminalListWrapper and DynamicTerminal:ListWrapper.}
 
 Jiffy:List myList = None
 

@@ -1,4 +1,5 @@
 Scriptname Jiffy:ValueMap:ChronicleBehavior extends Chronicle:Package:CustomBehavior
+{See Chronicle:Package:CustomBehavior}
 
 Jiffy:ValueMap[] Property MyMaps Auto Const Mandatory
 

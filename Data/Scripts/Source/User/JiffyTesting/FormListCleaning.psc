@@ -34,7 +34,7 @@ Function addToList(FormList targetList, Int formID)
 EndFunction
 
 Function outputList()
-	Jiffy:Logger.logFormList(JiffyTestingFormListNone)
+	Jiffy:Utility:Logger.logFormList(JiffyTestingFormListNone)
 EndFunction
 
 Function performInjections()

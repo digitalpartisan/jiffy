@@ -170,15 +170,10 @@ Function clear()
 EndFunction
 
 Bool Function add(Var avItem)
-	if (!validate(avItem))
-		;Jiffy:Logger.log(self + " cannot validate item " + avItem)
-	endif
-
-	if (has(avItem))
-		;Jiffy:Logger.log(self + " already has " + avItem)
+	if (!validate(avItem) || has(avItem))
 		return false
 	endif
-	
+
 	dataPrep()
 	
 	data.Add(avItem)
@@ -242,6 +237,7 @@ Bool Function removeAt(Int iIndex)
 EndFunction
 
 Var[] Function populateBehavior()
+{Returns a Var[] that defines the contents of the list.  Useful in }
 	return None
 EndFunction
 

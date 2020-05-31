@@ -1,4 +1,5 @@
 Scriptname Jiffy:BackgroundProcessor:FormListCleaner:ChronicleBehavior extends chronicle:package:custombehavior
+{See Chronicle:Package:CustomBehavior}
 
 Jiffy:BackgroundProcessor:FormListCleaner Property MyCleaner Auto Const Mandatory
 FormList[] Property Lists Auto Const

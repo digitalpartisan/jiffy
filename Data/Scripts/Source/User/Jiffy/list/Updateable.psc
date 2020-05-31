@@ -1,5 +1,6 @@
 Scriptname Jiffy:List:Updateable extends Jiffy:List Hidden
-{In addition to implementing the functions described in the documentation on Jiffy:List, users of this script should consider implementing populateBehavior() as well since it is required to gauge whether or not an update has occurred.}
+{This list script has the ability to update its contents and send an event if its content have changed since the last time the list was populated.
+In addition to implementing the functions described in the documentation on Jiffy:List, users of this script should consider implementing populateBehavior() as well since it is required to gauge whether or not an update has occurred.}
 
 CustomEvent Updated
 
@@ -23,6 +24,7 @@ Function clearUpdateData()
 EndFunction
 
 Bool Function hasDataChanged()
+{Detects differences between the current data set and the refreshed data set.  Returns true if differences are detected and false otherwise.}
 	Var[] currentData = getData()
 	Var[] newData = getUpdateData()
 	
@@ -47,6 +49,7 @@ Bool Function hasDataChanged()
 EndFunction
 
 Function update()
+{Refreshes the data and performs the comparison.  Fires the event if appropriate.}
 	setUpdateData(populateBehavior())
 	
 	if (hasDataChanged())

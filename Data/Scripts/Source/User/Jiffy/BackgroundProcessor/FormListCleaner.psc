@@ -1,4 +1,7 @@
 Scriptname Jiffy:BackgroundProcessor:FormListCleaner extends Jiffy:BackgroundProcessor
+{Cleans FormList records without holding up the process that invokes it.
+The queue must be a Jiffy:BackgroundProcessor:FormListCleaner:Queue.
+See Jiffy:BackgroundProcessor for more information.}
 
 Import Jiffy:Utility:FormList
 Import Jiffy:BackgroundProcessor:FormListCleaner:Queue
@@ -19,10 +22,12 @@ Function processLogic(Var item)
 EndFunction
 
 Function clean(FormList targetList, Bool bRecursive = true)
+{Converts the input into something the queue in use by this object.}
 	process(prepData(targetList, bRecursive))
 EndFunction
 
 Function cleanBulk(FormList[] formLists, Bool bRecursive = true)
+{Queues each FormList specified, optionally requiring a recursive cleaning.}
 	if (!formLists || !formLists.Length)
 		return
 	endif

@@ -1,4 +1,5 @@
 Scriptname Jiffy:HolotapeRetainer:ChronicleBehavior:Search extends Chronicle:Package:CustomBehavior:BehaviorSearch
+{See Chronicle:Package:CustomBehavior:BehaviorSearch}
 
 Bool Function meetsCriteria(Chronicle:Package:CustomBehavior behavior)
 	return (behavior as Jiffy:HolotapeRetainer:ChronicleBehavior)

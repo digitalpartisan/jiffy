@@ -1,6 +1,7 @@
 Scriptname Jiffy:Utility:FormList Hidden Const
 
 Form[] Function toArray(FormList theList) Global
+{Converts the specified FormList to a Form[]}
 	if (!theList)
 		return None
 	endif
@@ -22,6 +23,7 @@ Form[] Function toArray(FormList theList) Global
 EndFunction
 
 Form Function random(FormList theList) Global
+{Selects a random Form from the specified FormList}
 	if (!theList)
 		return None
 	endif
@@ -35,6 +37,7 @@ Form Function random(FormList theList) Global
 EndFunction
 
 Function addForms(FormList targetList, Form[] forms) Global
+{Adds the forms in a Form[] to the specified FormList}	
 	if (!targetList || !forms || !forms.Length)
 		return
 	endif
@@ -47,6 +50,7 @@ Function addForms(FormList targetList, Form[] forms) Global
 EndFunction
 
 Function removeForms(FormList targetList, Form[] forms) Global
+{Removes the forms in a Form[] from the specified FormList}
 	if (!targetList || !forms || !forms.Length)
 		return
 	endif
@@ -59,6 +63,7 @@ Function removeForms(FormList targetList, Form[] forms) Global
 EndFunction
 
 Form[] Function getCleanForms(FormList targetList) Global
+{Returns a Form[] containing all the non-None forms from the specified FormList}
 	if (!targetList || !targetList.GetSize())
 		return None
 	endif
@@ -77,6 +82,7 @@ Form[] Function getCleanForms(FormList targetList) Global
 EndFunction
 
 FormList[] Function adjustFormListContents(FormList targetList, Form[] correctForms) Global
+{Using the contents of the Form[] as a known-good list, ensures that the FormList specified contains no "None" forms and returns any FormList items that may need further cleaning.}
 	if (!targetList || !correctForms || correctForms.Length >= targetList.GetSize())
 		return None
 	endif
@@ -99,21 +105,23 @@ FormList[] Function adjustFormListContents(FormList targetList, Form[] correctFo
 EndFunction
 
 Function clean(FormList aflList, Bool bRecursive = true) Global
+{Given a FormList, ensures that it contains no "None" forms and optionally performs the same process to any FormList children if the recursive flag is true.}
 	if (!aflList || !aflList.GetSize())
-		Jiffy:Logger.log("FormList " + aflList + " does not need cleaning")
+		Jiffy:Utility:Logger.log("FormList " + aflList + " does not need cleaning")
 		return
 	endif
 	
-	Jiffy:Logger.cleaning(aflList)
+	Jiffy:Utility:Logger.cleaning(aflList)
 	
 	Form[] cleanForms = getCleanForms(aflList)
 	FormList[] children = adjustFormListContents(aflList, cleanForms)
 	bRecursive && cleanBulk(children)
 	
-	Jiffy:Logger.doneCleaning(aflList)
+	Jiffy:Utility:Logger.doneCleaning(aflList)
 EndFunction
 
 Function cleanBulk(FormList[] formLists, Bool bRecursive = true) Global
+{Cleans each FormList indicated, optionally recursing over each FormList found.}
 	if (!formLists || !formLists.Length)
 		return
 	endif

@@ -1,4 +1,5 @@
-Scriptname Jiffy:HolotapeRetainer:ChronicleBehavior extends Chronicle:Package:custombehavior:CustomQuestType
+Scriptname Jiffy:HolotapeRetainer:ChronicleBehavior extends Chronicle:Package:CustomBehavior:CustomQuestType
+{See Chronicle:Package:CustomBehavior and Chronicle:Package:CustomBehavior:CustomQuestType}
 
 Jiffy:HolotapeRetainer Property RetainerQuest Auto Const
 Bool Property StartOnInstall = false Auto Const

@@ -1,4 +1,5 @@
 Scriptname Jiffy:ValueMap:ChronicleBehavior:Search extends Chronicle:Package:custombehavior:BehaviorSearch
+{See Chronicle:Package:CustomBehavior:BehaviorSearch}
 
 Bool Function meetsCriteria(Chronicle:Package:CustomBehavior behavior)
 	return (behavior as Jiffy:ValueMap:ChronicleBehavior)

@@ -1,6 +1,7 @@
 Scriptname Jiffy:Utility:Array Hidden Const
 
 Var Function random(Var[] data) Global
+{Returns a random Var out of the specified Var[].  None if the Var[] doesn't exist or has no content.}
 	if (!data || !data.Length)
 		return None
 	endif
@@ -9,6 +10,7 @@ Var Function random(Var[] data) Global
 EndFunction
 
 Var[] Function copy(Var[] myArray) Global
+{Returns a separate Var[] instance with the same contents as the specified Var[].  Useful because arrays are passed by reference and sometimes, a copy is required.}
 	Var[] copy = new Var[0]
 
 	if (!myArray || !myArray.Length)
@@ -25,6 +27,7 @@ Var[] Function copy(Var[] myArray) Global
 EndFunction
 
 Var[] Function append(Var[] existing, Var[] additional) Global
+{Adds the items in additional to a copy of existing.  Returns a different array instance than either of the passed in arrays.}
 	Var[] result = copy(existing)
 	
 	if (!additional || !additional.Length)
@@ -44,6 +47,7 @@ Var[] Function append(Var[] existing, Var[] additional) Global
 EndFunction
 
 String Function toString(Var[] list) Global
+{Collapses the items in list into a string fit for logging.}
     String sResult = ""
     if (!list || !list.Length)
         return sResult

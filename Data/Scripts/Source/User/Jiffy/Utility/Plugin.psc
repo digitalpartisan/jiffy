@@ -1,6 +1,7 @@
 Scriptname Jiffy:Utility:Plugin Hidden Const
 
 String Function getFirstInstalledPlugin(String[] asPlugins) Global
+{Searches asPlugins and returns the first value that corresponds to an installed plugin.  Returns None if no plugin matching any of these names is installed.}
 	if (!asPlugins || !asPlugins.Length)
 		return None
 	endif

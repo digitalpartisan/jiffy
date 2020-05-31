@@ -1,5 +1,6 @@
 Scriptname Jiffy:BackgroundProcessor extends Quest
-{This quest should be running before process() is called, though steps have been taken to hedge against the failure case where this expectation is not met.}
+{Useful for handling long-running or less-than-essential tasks in the background so that more important, user-facing tasks can take priority.
+This quest should be running before process() is called, though steps have been taken to hedge against the failure case where this expectation is not met.}
 
 Jiffy:List:Queue Property MyQueue Auto Const Mandatory
 
@@ -8,8 +9,12 @@ String sStateWaiting = "Waiting" Const
 String sStateWorking = "Working" Const
 String sStateStopped = "Stopped" Const
 
+Bool Function compareState(String sValue)
+	return GetState() == sValue
+EndFunction
+
 Bool Function isDormant()
-	return false
+	return compareState(sStateDormant)
 EndFunction
 
 Function goToDormant()
@@ -17,7 +22,7 @@ Function goToDormant()
 EndFunction
 
 Bool Function isWaiting()
-	return false
+	return compareState(sStateWaiting)
 EndFunction
 
 Function goToWaiting()
@@ -25,7 +30,7 @@ Function goToWaiting()
 EndFunction
 
 Bool Function isWorking()
-	return false
+	return compareState(sStateWorking)
 EndFunction
 
 Function goToWorking()
@@ -33,7 +38,7 @@ Function goToWorking()
 EndFunction
 
 Bool Function isStopped()
-	return false
+	return compareState(sStateWorking)
 EndFunction
 
 Function goToStopped()
@@ -45,9 +50,10 @@ Jiffy:List:Queue Function getQueue()
 EndFunction
 
 Function queueItem(Var item)
-	Jiffy:BackgroundProcessor:Logger.logReceivedItem(self, item)
-	if (!getQueue().add(item))
-		;Jiffy:Logger.log(self + " rejected item " + item)
+	if (getQueue().add(item))
+		Jiffy:BackgroundProcessor:Logger.logReceivedItem(self, item)
+	else
+		Jiffy:BackgroundProcessor:Logger.logRejectedItem(self, item)
 	endif
 EndFunction
 

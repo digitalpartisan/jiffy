@@ -22,6 +22,10 @@ Bool Function logReceivedItem(Jiffy:BackgroundProcessor processor, Var item) Glo
 	return log(processor + " received item " + item)
 EndFunction
 
+Bool Function logRejectedItem(Jiffy:BackgroundProcessor processor, Var item) Global
+	return log(processor + " rejected item " + item)
+EndFunction
+
 Bool Function logNoProcessingLogic(Jiffy:BackgroundProcessor processor) Global
 	return error(processor + " has no processing logic")
 EndFunction

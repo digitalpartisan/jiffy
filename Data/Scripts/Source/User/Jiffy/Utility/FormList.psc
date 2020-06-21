@@ -83,15 +83,11 @@ EndFunction
 
 FormList[] Function adjustFormListContents(FormList targetList, Form[] correctForms) Global
 {Using the contents of the Form[] as a known-good list, ensures that the FormList specified contains no "None" forms and returns any FormList items that may need further cleaning.}
-	if (!targetList || !correctForms || correctForms.Length >= targetList.GetSize())
+	if (!targetList || !correctForms)
 		return None
 	endif
 	
-	Int iPreRevertSize = targetList.GetSize()
 	targetList.Revert()
-	if (iPreRevertSize == targetList.GetSize())
-		return None
-	endif
 	
 	FormList[] formLists = new FormList[0]
 	Int iCounter = 0

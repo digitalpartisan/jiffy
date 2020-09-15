@@ -1,2 +1,0 @@
-SCAFFOLD_MOD="Jiffy"
-SCAFFOLD_GAME="fallout4"

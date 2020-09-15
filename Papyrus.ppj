@@ -8,6 +8,6 @@
 		<Import>F:\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\Base</Import>
 	</Imports>
 	<Folders>
-		<Folder>.\Data\Scripts\Source\User</Folder>
+		<Folder>F:\Mod Projects\Fallout4\Jiffy\Data\Scripts\Source\User</Folder>
 	</Folders>
 </PapyrusProject>

@@ -15,3 +15,8 @@ EndFunction
 Bool Function error(String sMessage, String[] tags = None) Global
 	return Jiffy:Loggout.error(getName(), sMessage, tags)
 EndFunction
+
+Bool Function logCanaryCall( Quest callingObject, String asScriptName) Global
+	String[] tags = new String[0]
+	return log(callingObject + " is calling Canary as " + asScriptName, tags)
+EndFunction

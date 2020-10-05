@@ -6,6 +6,7 @@
 	"Data\\Scripts\\Jiffy\\BackgroundProcessor\\FormListCleaner.pex",
 	"Data\\Scripts\\Jiffy\\BackgroundProcessor\\Logger.pex",
 	"Data\\Scripts\\Jiffy\\BackgroundProcessor.pex",
+	"Data\\Scripts\\Jiffy\\Canary.pex",
 	"Data\\Scripts\\Jiffy\\HolotapeRetainer\\ChronicleBehavior\\Search.pex",
 	"Data\\Scripts\\Jiffy\\HolotapeRetainer\\ChronicleBehavior.pex",
 	"Data\\Scripts\\Jiffy\\HolotapeRetainer\\Logger.pex",

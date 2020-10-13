@@ -1,5 +1,5 @@
 ScriptName Jiffy:Canary extends Quest Hidden
-{Extend this script to give it a unique full name as needed so that the right script is }
+{Extend this script to give it a unique full name as needed so that the right script name is used when call() is invoked.}
 
 String Property FullScriptName Auto Const Mandatory
 {Put the full name of the script this item is attached to here.}

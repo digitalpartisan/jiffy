@@ -13,6 +13,9 @@ Idle Property ElevatorFaceCamera Auto Mandatory
 Idle Property ElevatorBodyCamera Auto Mandatory
 {Autofill}
 
+ObjectReference Property EnvironmentMarker Auto Const
+{Optional Reference that is enabled prior to showing the racemenu and disabled when the player leaves the racemenu}
+
 InputEnableLayer RespecEnableLayer = None
 
 Int Function getMode()
@@ -30,7 +33,7 @@ Function moveToMarker()
 EndFunction
 
 Function prepareEnvironment()
-	
+	EnvironmentMarker && EnvironmentMarker.Enable()
 EndFunction
 
 Event OnActivate(ObjectReference akActionRef)
@@ -49,9 +52,10 @@ Event OnActivate(ObjectReference akActionRef)
 	aPlayer.ChangeAnimFaceArchetype(None)
 
 	moveToMarker()
-	prepareEnvironment()
 	Game.ForceThirdPerson()
 	Utility.Wait(0.01)
+
+	prepareEnvironment()
 
 	aPlayer.PlayIdle(ElevatorFaceCamera)
 	Game.ShowRaceMenu(uimode = getMode())
@@ -67,6 +71,8 @@ Event OnMenuOpenCloseEvent(string asMenuName, bool abOpening)
 
 	UnregisterForMenuOpenCloseEvent(LooksMenu)
 	UnregisterForLooksMenuEvent()
+
+	EnvironmentMarker && EnvironmentMarker.Disable()
 
 	Game.ForceFirstPerson()
 	Actor aPlayer = Game.GetPlayer()

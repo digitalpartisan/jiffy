@@ -73,20 +73,15 @@ Function moveFollowers()
 	endWhile
 EndFunction
 
-Function move(Bool bFromTerminal = false)
+Function move()
 	if (!canAct())
 		return
 	endif
 
-	if (bFromTerminal)
-		Game.GetPlayer().MoveTo(getDestination())
-		TeleportFollowers && moveFollowers()
+	if (TeleportFollowers)
+		Game.FastTravel(getDestination())
 	else
-		if (TeleportFollowers)
-			Game.FastTravel(getDestination())
-		else
-			Game.GetPlayer().MoveTo(getDestination())
-		endif
+		Game.GetPlayer().MoveTo(getDestination())
 	endif
 EndFunction
 
@@ -125,9 +120,16 @@ Function postRun()
 
 EndFunction
 
-Function act(ObjectReference destinationRef, Bool bFromTerminal = false)
+Function act(ObjectReference destinationRef, Bool bFromTerminal = false, Bool bFromPipBoy = false)
 	if (!setDestination(destinationRef))
 		return
+	endif
+
+	Actor aPlayer = Game.GetPlayer()
+
+	if (bFromTerminal)
+		aPlayer.MoveTo(aPlayer)
+		Utility.Wait(0.1)
 	endif
 
 	preRun()
@@ -135,10 +137,13 @@ Function act(ObjectReference destinationRef, Bool bFromTerminal = false)
 	InputEnableLayer controls = InputEnableLayer.create()
 	controls.DisablePlayerControls(abLooking = true, abSneaking = true, abJournalTabs = true, abRunning = false)
 
-	preTeleport()
-	!bFromTerminal && teleportOut()
+	if (!bFromPipBoy || aPlayer.IsInInterior()) ; the pipboy doesn't always play well with the teleportation effects even if the player has been moved "out" of the pipboy already, but almost always does when the player is in an interior cell
+		preTeleport()
+		teleportOut()
+	endif
+
 	preMove()
-	move(bFromTerminal)
+	move()
 	controls.DisablePlayerControls(abLooking = true, abSneaking = true, abJournalTabs = true, abRunning = false)
 	postMove()
 	teleportIn()
@@ -152,6 +157,6 @@ Function act(ObjectReference destinationRef, Bool bFromTerminal = false)
 	clearDestination()
 EndFunction
 
-Function actFromTerminal(ObjectReference destinationRef)
-	act(destinationRef, true)
+Function actFromTerminal(ObjectReference akTerminalRef, ObjectReference destinationRef)
+	act(destinationRef, true, !(akTerminalRef as Bool))
 EndFunction

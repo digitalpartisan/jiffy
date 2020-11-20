@@ -350,13 +350,13 @@ EndState
 State Processing
 	Event OnBeginState(String asOldState)
 		iProcessingCounter = 0
-		SimpleSettlementSolutions:Logger.log(self + " is processing")
+		Jiffy:Logger.log(self + " is processing")
 		SendCustomEvent("Processing")
 	EndEvent
 	
 	Event OnEndState(String asOldState)
 		iProcessingCounter = 0 ; not required, but cleanup is always good
-		SimpleSettlementSolutions:Logger.log(self + " is done processing")
+		Jiffy:Logger.log(self + " is done processing")
 		SendCustomEvent("Processed")
 	EndEvent
 	
@@ -369,12 +369,12 @@ EndState
 
 State Pulling
 	Event OnBeginState(String asOldState)
-		SimpleSettlementSolutions:Logger.log(self + "is pulling")
+		Jiffy:Logger.log(self + "is pulling")
 		SendCustomEvent("Pulling")
 	EndEvent
 	
 	Event OnEndState(String asOldState)
-		SimpleSettlementSolutions:Logger.log(self + " is done pulling")
+		Jiffy:Logger.log(self + " is done pulling")
 		SendCustomEvent("Pulled")
 	EndEvent
 EndState

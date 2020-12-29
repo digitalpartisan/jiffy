@@ -1,5 +1,9 @@
 Scriptname Jiffy:Utility:Array Hidden Const
 
+Bool Function isIndexValid(Int iIndex, Var[] theArray) Global
+	return theArray && iIndex >= 0 && iIndex < theArray.Length
+EndFunction
+
 Var Function random(Var[] data) Global
 {Returns a random Var out of the specified Var[].  None if the Var[] doesn't exist or has no content.}
 	if (!data || !data.Length)

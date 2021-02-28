@@ -15,6 +15,8 @@ CustomEvent Cleaned
 CustomEvent Cleared
 
 Var[] data = None
+Int iIterationIndex = 0
+Bool bForwardIteration = true
 
 Var[] Function getEventArguments(Var avItem)
 	Var[] result = new Var[0]
@@ -70,6 +72,14 @@ Var Function get(Int iIndex)
 	endif
 	
 	return None
+EndFunction
+
+Var Function getFirst()
+	return get(0)
+EndFunction
+
+Var Function getLast()
+	return get(getSize() - 1)
 EndFunction
 
 Var[] Function getData()
@@ -236,6 +246,14 @@ Bool Function removeAt(Int iIndex)
 	return true
 EndFunction
 
+Bool Function removeFirst()
+	return removeAt(0)
+EndFunction
+
+Bool Function removeLast()
+	return removeAt(getSize() - 1)
+EndFunction
+
 Var[] Function populateBehavior()
 {Returns a Var[] that defines the contents of the list.  Useful in }
 	return None
@@ -247,4 +265,49 @@ EndFunction
 
 String Function toString()
     return self + " with data " + Jiffy:Utility:Array.toString(getData())
+EndFunction
+
+Function resetIteration(Bool bForward = true)
+	bForwardIteration = bForward
+	if (bForwardIteration)
+		iIterationIndex = 0
+	else
+		iIterationIndex = getSize() - 1
+	endif
+EndFunction
+
+Int Function getNextIterationIndex()
+	Int iNextIndex = iIterationIndex
+	if (bForwardIteration)
+		iNextIndex += 1
+	else
+		iNextIndex -= 1
+	endif
+
+	return iNextIndex
+EndFunction
+
+Function advanceIterationIndex()
+	if (bForwardIteration)
+		iIterationIndex += 1
+	else
+		iIterationIndex -= 1
+	endif
+EndFunction
+
+Var Function inspect()
+	Int iCheckIndex = iIterationIndex
+	if (bForwardIteration)
+		iCheckIndex += 1
+	else
+		iCheckIndex -= 1
+	endif
+
+	return get(iCheckIndex)
+EndFunction
+
+Var Function iterate()
+	Var nextValue = inspect()
+	nextValue && advanceIterationIndex()
+	return nextValue
 EndFunction

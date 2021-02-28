@@ -19,3 +19,19 @@ EndFunction
 Form Function pollForm()
 	return poll() as Form
 EndFunction
+
+Form Function inspectForm()
+	return inspect() as Form
+EndFunction
+
+Form Function iterateForm()
+	return iterate() as Form
+EndFunction
+
+Bool Function addBulkForms(Form[] forms)
+	return addBulk(forms as Var[])
+EndFunction
+
+Bool Function removeBulkForms(Form[] forms)
+	return removeBulk(forms as Var[])
+EndFunction
